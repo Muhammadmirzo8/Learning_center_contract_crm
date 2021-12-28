@@ -43,7 +43,7 @@ class Contract(models.Model):
         ("Tuesday-Thursday-Saturday", "Tuesday-Thursday-Saturday"), 
         ("Monday-Saturday","Monday-Saturday")
     )
-    contract_number = models.PositiveSmallIntegerField() 
+    contract_number = models.PositiveSmallIntegerField(unique=True) 
     student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True) 
     course = models.ForeignKey(Courses, on_delete=models.SET_NULL, null=True)  
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)  
@@ -56,4 +56,4 @@ class Contract(models.Model):
     status = models.CharField(max_length=15, choices=(("Active", "active"), ("Passive", "Passive")))
     
     def __str__(self): 
-        return f"#{self.contract_number}:{self.student}"
+        return f"#{self.contract_number}:{self.student} "
